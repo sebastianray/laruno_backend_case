@@ -1,0 +1,273 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Laruno-Test-Backend API",
+        "description": "Product-Category CRUD API",
+        "version": "1.0",
+        "contact": {}
+    },
+    "tags": [
+        {
+            "name": "Products",
+            "description": ""
+        },
+        {
+            "name": "Category",
+            "description": ""
+        }
+    ],
+    "servers": "http://localhost:3000/api",
+    "components": {
+        "schemas": {
+            "CreateProductDTO": {
+                "type": "object",
+                "properties": {
+                    "name": "string",
+                    "category_id": "string"
+                }
+            },
+            "CreateCategoryDTO": {
+                "type": "object",
+                "properties": {
+                    "name": "string"
+                }
+            }
+        }
+    },
+    "paths": {
+        "/": {
+            "get": {
+                "operationId": "AppController_getHello",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/product/create": {
+            "post": {
+                "operationId": "ProductsController_createProduct",
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateProductDTO"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "message": "Product Successfully Created",
+                        "product": {
+                            "_id": "5fe301460bdf6f44d8fe3d57",
+                            "name": "Vans OS",
+                            "category_id": "5fe2817c09e9023c808500cb",
+                            "__v": 0
+                        }
+                    }
+                }
+            }
+        },
+        "/product/all": {
+            "get": {
+                "operationId": "ProductsController_getProducts",
+                "parameters": [],
+                "responses": {
+                    "200": [
+                        {
+                            "_id": "5fe2e339420e012aace27dc7",
+                            "name": "YeezyV2",
+                            "category_id": "5fe2817c09e9023c808500cb",
+                            "__v": 0
+                        },
+                        {
+                            "_id": "5fe301460bdf6f44d8fe3d57",
+                            "name": "Vans OS",
+                            "category_id": "5fe2817c09e9023c808500cb",
+                            "__v": 0
+                        }
+                    ]
+                }
+            }
+        },
+        "/product/{productID}": {
+            "get": {
+                "operationId": "ProductsController_getProduct",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "_id": "5fe301460bdf6f44d8fe3d57",
+                        "name": "Vans OS",
+                        "category_id": "5fe2817c09e9023c808500cb",
+                        "__v": 0
+                    }
+                }
+            }
+        },
+        "/product/delete?productID=": {
+            "delete": {
+                "operationId": "ProductsController_deleteProduct",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "message": "Product Deleted Successfully",
+                        "productDeleted": {
+                            "_id": "5fe206bea9a665354044bc45",
+                            "name": "YeezyV2",
+                            "__v": 0
+                        }
+                    }
+                }
+            }
+        },
+        "/product/update?productID=": {
+            "put": {
+                "operationId": "ProductsController_updateProduct",
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateProductDTO"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "message": "Product Updated Successfully",
+                        "updatedProduct": {
+                            "_id": "5fe2e339420e012aace27dc7",
+                            "name": "Jordan XI",
+                            "category_id": "5fe2817c09e9023c808500cb",
+                            "__v": 0
+                        }
+                    }
+                }
+            }
+        },
+        "/product/deletemultiple": {
+            "delete": {
+                "operationId": "ProductsController_deleteMultipleProduct",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "message": "Multiple Products Deleted Successfully",
+                        "productDeleted": {
+                            "n": 10,
+                            "ok": 1,
+                            "deletedCount": 10
+                        }
+                    }
+                }
+            }
+        },
+        "/category/create": {
+            "post": {
+                "operationId": "CategoryController_createCategory",
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateCategoryDTO"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "message": "category Successfully Created",
+                        "category": {
+                            "_id": "5fe31397fdff5831cc95fbff",
+                            "name": "Fashion",
+                            "__v": 0
+                        }
+                    }
+                }
+            }
+        },
+        "/category/all": {
+            "get": {
+                "operationId": "CategoryController_getCategories",
+                "parameters": [],
+                "responses": {
+                    "200": [
+                        {
+                            "_id": "5fe2806b7bdf57238443872c",
+                            "name": "Gadget",
+                            "__v": 0
+                        },
+                        {
+                            "_id": "5fe31397fdff5831cc95fbff",
+                            "name": "Fashion",
+                            "__v": 0
+                        }
+                    ]
+                }
+            }
+        },
+        "/category/{categoryID}": {
+            "get": {
+                "operationId": "CategoryController_getCategory",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "_id": "5fe2817c09e9023c808500cb",
+                        "name": "Gadget",
+                        "__v": 0
+                    }
+                }
+            }
+        },
+        "/category/delete?categoryID=": {
+            "delete": {
+                "operationId": "CategoryController_deleteCategory",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "message": "Category Deleted Successfully",
+                        "categoryDeleted": {
+                            "_id": "5fe2806b7bdf57238443872c",
+                            "name": "Gadget",
+                            "__v": 0
+                        }
+                    }
+                }
+            }
+        },
+        "/category/update": {
+            "put": {
+                "operationId": "CategoryController_updateCategory",
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateCategoryDTO"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "message": "Category Updated Successfully",
+                        "updatedCategory": {
+                            "_id": "5fe2817c09e9023c808500cb",
+                            "name": "Electronics",
+                            "__v": 0
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
